@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Random Quote Display</title>
+    <title>Task 2.2P</title>
 </head>
 
 <body>
@@ -11,6 +11,19 @@
     <p>Click the button below to get a random quote from the server:</p>
     <button id="fetchQuoteBtn">Get Quote</button>
     <p id="quoteDisplay"></p>
+
+    <h1>Sum Calculator</h1>
+    <form action="/add" method="GET">
+        <div>
+            <label for="a">Number 1:</label>
+            <input type="text" id="a" name="a" required>
+        </div>
+        <div>
+            <label for="b">Number 2:</label>
+            <input type="text" id="b" name="b" required>
+        </div>
+        <button type="submit">Calculate Sum</button>
+    </form>
 
     <script>
         // Attach an event listener to the button
