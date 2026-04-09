@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Muscle Cars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue-grey darken-4">
+            <a href="#" class="brand-logo" style="margin-left: 20px;">3.1P Getting Creative</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-body">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h1 id="heading">Muscle Car Collection</h1>
+                    <p class="italic-text">Exploring the legends: Mustang, Camaro, and GTO.</p>
+                </div>
+            </div>
+
+            <div class="row" id="card-section">
+            </div>
+
+            <div class="row center-align">
+                <a class="waves-effect waves-light btn click-me-button modal-trigger" href="#modal1">
+                    <i class="material-icons left">auto_fix_high</i>Click Me
+                </a>
+            </div>
+        </div>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Inquiry Form</h4>
+                <p>Enter your details to learn more about these classics.</p>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name" type="text" class="validate">
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">Last Name</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="formSubmit" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

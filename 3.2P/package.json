@@ -1,0 +1,22 @@
+{
+  "name": "3.2p",
+  "version": "1.0.0",
+  "description": "Getting Graphical",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/subham-gp/SIT725_s225532535.git",
+    "directory": "3.2P"
+  },
+  "keywords": [],
+  "author": "Subham",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
