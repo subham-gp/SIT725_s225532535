@@ -11,6 +11,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/Books')
 
 const bookData = [
     {
+        id: "B01",
         title: "The Great Gatsby",
         author: "F. Scott Fitzgerald",
         year: 1925,
@@ -19,6 +20,7 @@ const bookData = [
         price: "29.99"
     },
     {
+        id: "B02",
         title: "1984",
         author: "George Orwell",
         year: 1949,
@@ -27,6 +29,7 @@ const bookData = [
         price: "22.00"
     },
     {
+        id: "B03",
         title: "Pride and Prejudice",
         author: "Jane Austen",
         year: 1813,
@@ -35,6 +38,7 @@ const bookData = [
         price: "22.00"
     },
     {
+        id: "B04",
         title: "The English Patient",
         author: "Michael Ondaatje",
         year: 1992,
@@ -43,6 +47,7 @@ const bookData = [
         price: "25.39"
     },
     {
+        id: "B05",
         title: "Small Gods",
         author: "Terry Pratchett",
         year: 1992,

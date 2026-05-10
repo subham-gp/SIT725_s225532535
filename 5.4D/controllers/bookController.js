@@ -36,11 +36,11 @@ const createBook = async (req, res) => {
         res.status(201).json({ statusCode: 201, data: newBook, message: "Created" });
     } catch (err) {
         //Handle Duplicate ID
-        if (err.name === 'ConflictError' || err.code === 11000) {
+        if (err.name === 'DuplicateError' || err.code === 11000) {
             return res.status(409).json({ statusCode: 409, message: "Conflict: Duplicate ID" });
         }
         //Handle Validation Failures
-        if (err.name === 'ValidationError') {
+        if (err.name === 'ValidationError' || err.name === 'StrictModeError') {
             return res.status(400).json({ statusCode: 400, message: err.message });
         }
         res.status(500).json({ statusCode: 500, message: err.message });
@@ -57,7 +57,7 @@ const updateBook = async (req, res) => {
         res.status(200).json({ statusCode: 200, data: updatedBook, message: "Updated" });
     } catch (err) {
         //Handle Immutability or Validation Failures
-        if (err.name === 'ValidationError' || err.message.includes('immutable')) {
+        if (err.name === 'ValidationError' || err.name === 'StrictModeError' || err.message.includes('immutable')) {
             return res.status(400).json({ statusCode: 400, message: err.message });
         }
         res.status(500).json({ statusCode: 500, message: err.message });

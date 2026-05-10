@@ -187,7 +187,7 @@ async function runTests() {
     });
 
     const allCovered = Object.values(coverageTracker).every(v => v > 0);
-    console.log(`\nOVERALL_RESULT: ${allCovered ? "PASS (Distinction Criteria Met)" : "FAIL (Check Coverage)"}`);
+    console.log(`\nOVERALL_RESULT: ${allCovered ? "PASS" : "FAIL"}`);
 
     process.exit(allCovered ? 0 : 1);
 }

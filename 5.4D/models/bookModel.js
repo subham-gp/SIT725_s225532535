@@ -56,7 +56,8 @@ const bookSchema = new mongoose.Schema({
     toJSON: { getters: true },
     toObject: { getters: true },
     //This prevents Mongoose from adding the '__v' version key
-    versionKey: false
+    versionKey: false,
+    strict: 'throw' //to trigger StrictModeError for unknown fields
 });
 
 module.exports = mongoose.model('Book', bookSchema);

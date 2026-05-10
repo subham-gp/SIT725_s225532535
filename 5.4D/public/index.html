@@ -8,10 +8,13 @@
     <style>
         body {
             font-family: sans-serif;
-            margin: 40px;
+            margin: 0;
             line-height: 1.6;
             display: flex;
-            gap: 50px;
+            flex-direction: column;
+            /*to stack contents*/
+            min-height: 100vh;
+            /*body takes full screen height*/
         }
 
         h1 {
@@ -20,6 +23,14 @@
             position: absolute;
             top: 0;
             left: 40px;
+        }
+
+        /*Keeping list and details side-by-side*/
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 0 40px;
+            gap: 50px;
         }
 
         #list-section {
@@ -36,7 +47,7 @@
             background-color: #f9f9f9;
             height: fit-content;
             position: sticky;
-            top: 60px;
+            top: 20px;
         }
 
         .book-card {
@@ -62,14 +73,16 @@
 <body>
     <h1>Book Catalog</h1>
 
-    <div id="list-section">
-        <h3>Books Available</h3>
-        <div id="book-list">Loading books...</div>
-    </div>
+    <div class="main-content">
+        <div id="list-section">
+            <h3>Books Available</h3>
+            <div id="book-list">Loading books...</div>
+        </div>
 
-    <div id="detail-section">
-        <h3>Book Details</h3>
-        <div id="book-details">Select a book to view details.</div>
+        <div id="detail-section">
+            <h3>Book Details</h3>
+            <div id="book-details">Select a book to view details.</div>
+        </div>
     </div>
 
     <script>
@@ -102,7 +115,11 @@
                 `;
 
                 //fetching a specific book's details when clicked
-                bookDiv.onclick = () => fetchSingleBook(book.id || book._id);
+                //bookDiv.onclick = () => fetchSingleBook(book.id);
+                bookDiv.onclick = () => {
+                    console.log("Fetching ID:", book.id);   //To verify the ID exists
+                    fetchSingleBook(book.id);
+                };
 
                 container.appendChild(bookDiv);
             });
@@ -140,7 +157,7 @@
         window.onload = fetchBooks;
     </script>
     <footer>
-        <p>© Developed by Subham Gupta s225532535 - SIT725 DU</p>
+        <p>©Developed by Subham Gupta s225532535 - SIT725 DU</p>
     </footer>
 </body>
 
