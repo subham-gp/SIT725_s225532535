@@ -1,6 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
+const http = require('http');   //Require to bind express with socket.io
+const { Server } = require('socket.io')
+
 const app = express();
+const port = 3000;
+
+//Creating HTTP Server instance wrapping Express app
+const server = http.createServer(app);
 const port = 3000;
 
 // Middleware
@@ -49,7 +57,7 @@ app.post('/api/car', async (req, res) => {
     }
 });
 
-//Calculation Function
+// 1. Pure Calculation Function (Isolated Logic for Step 4 of Task sheet)
 function calculateFinalBuyingPrice(originalPrice, discountPercentage) {
     // Safety Gate / Guard Clause: Protect against negative parameters or text strings
     if (
@@ -67,7 +75,7 @@ function calculateFinalBuyingPrice(originalPrice, discountPercentage) {
     return parseFloat(finalPrice.toFixed(2));
 }
 
-//New GET API Route to link frontend to our calculation function
+// 2. New GET API Route to link frontend to our calculation function
 app.get('/api/calculate-discount', (req, res) => {
     const price = parseFloat(req.query.price);
     const discount = parseFloat(req.query.discount);
@@ -81,12 +89,12 @@ app.get('/api/calculate-discount', (req, res) => {
     });
 });
 
-//Capture the active server listener instance
+// 3. Capture the active server listener instance
 const server = app.listen(port, () => {
     console.log(`Muscle Car Server running on http://localhost:${port}`);
 });
 
-//Clean Export Block for Mocha Framework Execution Testing
+// 4. Clean Export Block for Mocha Framework Execution Testing
 module.exports = { app, server, calculateFinalBuyingPrice };
 
 app.listen(port, () => {
