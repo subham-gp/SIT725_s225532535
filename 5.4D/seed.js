@@ -26,7 +26,7 @@ const bookData = [
         year: 1949,
         genre: "Dystopian",
         summary: "A chilling portrayal of a totalitarian future.",
-        price: "22.00"
+        price: "25.00"
     },
     {
         id: "B03",
