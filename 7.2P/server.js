@@ -9,9 +9,9 @@ const port = 3000;
 
 //Creating HTTP Server instance wrapping Express app
 const server = http.createServer(app);
-const port = 3000;
+const io = new Server(server);
 
-// Middleware
+//Middleware
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -57,9 +57,9 @@ app.post('/api/car', async (req, res) => {
     }
 });
 
-// 1. Pure Calculation Function (Isolated Logic for Step 4 of Task sheet)
+//Calculation Function
 function calculateFinalBuyingPrice(originalPrice, discountPercentage) {
-    // Safety Gate / Guard Clause: Protect against negative parameters or text strings
+    //Safety Gate / Guard Clause: Protect against negative parameters or text strings
     if (
         typeof originalPrice !== 'number' || originalPrice < 0 || isNaN(originalPrice) ||
         typeof discountPercentage !== 'number' || discountPercentage < 0 || discountPercentage > 100 || isNaN(discountPercentage)
@@ -67,15 +67,15 @@ function calculateFinalBuyingPrice(originalPrice, discountPercentage) {
         return 0;
     }
 
-    // Calculate markdown savings value
+    //Calculate markdown savings value
     const discountAmount = originalPrice * (discountPercentage / 100);
     const finalPrice = originalPrice - discountAmount;
 
-    // Return the rounded financial numeric format
+    //Return the rounded financial numeric format
     return parseFloat(finalPrice.toFixed(2));
 }
 
-// 2. New GET API Route to link frontend to our calculation function
+//New GET API Route to link frontend to our calculation function
 app.get('/api/calculate-discount', (req, res) => {
     const price = parseFloat(req.query.price);
     const discount = parseFloat(req.query.discount);
@@ -89,14 +89,40 @@ app.get('/api/calculate-discount', (req, res) => {
     });
 });
 
-// 3. Capture the active server listener instance
-const server = app.listen(port, () => {
-    console.log(`Muscle Car Server running on http://localhost:${port}`);
+//Socket.io Logic
+const stockAlerts = [
+    "Low Stock Alert: Only 1 Ford Mustang left in inventory!",
+    "Price Drop Alert: Chevrolet Camaro markdown updated!",
+    "Hot Offer: 0% financing available on Pontiac GTO entries this week!",
+    "High Demand: 5 users are currently viewing the Mustang Fastback!"
+];
+
+io.on('connection', (socket) => {
+    console.log('A classic car enthusiast connected to the live feed');
+
+    //Send an immediate custom welcome alert to this specific user
+    socket.emit('carAlert', "Welcome! Connected to the Live Muscle Car Inventory feed.");
+
+    //Set up a loop to send randomized mock stock alerts every 5 seconds to all connected clients
+    const alertInterval = setInterval(() => {
+        const randomAlert = stockAlerts[Math.floor(Math.random() * stockAlerts.length)];
+        socket.emit('carAlert', randomAlert);
+    }, 5000);
+
+    socket.on('disconnect', () => {
+        console.log('An enthusiast disconnected from the feed');
+        clearInterval(alertInterval); // Stop execution to clear memory overhead
+    });
 });
 
-// 4. Clean Export Block for Mocha Framework Execution Testing
+//Start listening via the wrapped HTTP server instance
+server.listen(port, () => {
+    console.log(`🚀 Muscle Car Server running on http://localhost:${port}`);
+});
+
+//Clean Export Block for Mocha Framework Execution Testing
 module.exports = { app, server, calculateFinalBuyingPrice };
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+//server.listen(port, () => {
+//    console.log(`Server running at http://localhost:${port}`);
+//});

@@ -86,3 +86,20 @@ $('#btn-calculate').click(() => {
         }
     });
 });
+
+const socket = io();    //Initialize socket connection channel
+
+//Listen for the custom carAlert event from the server engine
+socket.on('carAlert', (message) => {
+    console.log("📥 Live Alert Received: ", message);
+
+    //Target the notification element wrapper layout
+    const alertContainer = $('#live-alert-container');
+    const alertText = $('#live-alert-text');
+
+    //Inject the message text strings cleanly
+    alertText.text(message);
+
+    //Make the bar visible if it's hidden
+    alertContainer.slideDown(400);
+});

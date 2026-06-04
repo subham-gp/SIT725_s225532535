@@ -13,10 +13,15 @@
 <body>
     <nav>
         <div class="nav-wrapper blue-grey darken-4">
-            <a href="#" class="brand-logo" style="margin-left: 20px;">6.2C - Tests</a>
+            <a href="#" class="brand-logo" style="margin-left: 20px;">7.2P - Sockets</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <!-- <li><a href="#">Home</a></li> -->
             </ul>
+
+            <div id="live-alert-container" class="amber lighten-4 black-text center-align"
+                style="padding: 10px; font-weight: bold; font-size: 1.1rem; display: none; transition: all 0.5s ease;">
+                <span id="live-alert-text">Connecting to Live Status Engine...</span>
+            </div>
         </div>
     </nav>
 
@@ -98,6 +103,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/script.js"></script>
 </body>
 
