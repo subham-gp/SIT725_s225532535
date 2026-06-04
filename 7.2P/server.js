@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 mongoose.connect('mongodb://localhost:27017/Cars');
 
 mongoose.connection.on('connected', () => {
-    console.log('✅ Connected to local MongoDB: Cars');
+    console.log('✅Connected to local MongoDB: Cars');
 });
 
 //Define the Schema and Model
@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
 
 //Start listening via the wrapped HTTP server instance
 server.listen(port, () => {
-    console.log(`🚀 Muscle Car Server running on http://localhost:${port}`);
+    console.log(`Muscle Car Server running on http://localhost:${port}`);
 });
 
 //Clean Export Block for Mocha Framework Execution Testing
